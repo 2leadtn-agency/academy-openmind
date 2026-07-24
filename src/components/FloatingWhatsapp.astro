@@ -1,0 +1,41 @@
+---
+const WHATSAPP_NUMBER = "21697031143";
+const PREFILLED_MESSAGE = "Bonjour, je vous contacte depuis votre site";
+---
+
+<a
+  class="floating-whatsapp"
+  href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(PREFILLED_MESSAGE)}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Contacter Openmind Academy sur WhatsApp"
+>
+  <svg viewBox="0 0 32 32" fill="#fff" xmlns="http://www.w3.org/2000/svg" width="30" height="30">
+    <path
+      d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.36.64 4.57 1.87 6.52L4 29l7.63-1.83a11.96 11.96 0 0 0 4.4.83h.01c6.62 0 12.02-5.4 12.02-12.02C28.06 8.4 22.66 3 16.02 3z"
+    ></path>
+  </svg>
+</a>
+
+<style>
+  .floating-whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #25d366;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
+    z-index: 2147482900;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .floating-whatsapp:hover {
+    transform: scale(1.06);
+    box-shadow: 0 8px 22px rgba(37, 211, 102, 0.5);
+  }
+</style>

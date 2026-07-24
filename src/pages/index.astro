@@ -1,12 +1,797 @@
 ---
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+
+const WHATSAPP_NUMBER = "21699109693";
+const WHATSAPP_MESSAGE = encodeURIComponent("Bonjour, je vous contacte depuis votre site");
 ---
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Apercu</title>
-</head>
-<body>
-  <h1>Apercu en cours de construction</h1>
-</body>
-</html>
+
+<Layout>
+  <main>
+    <!-- HERO — asymmetric, collage signature moment -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Centre éducatif · Sidi Abdelhamid, Sousse</p>
+          <h1>Là où la curiosité de votre enfant<br /> devient un jeu d'enfant.</h1>
+          <p class="hero-lead">
+            Soutien scolaire, clubs d'été, mémorisation du Coran et cours de langues :
+            Openmind Academy accompagne vos enfants dans un cadre bienveillant, vivant
+            et sécurisant, au cœur de Sousse.
+          </p>
+          <div class="hero-actions">
+            <a
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`}
+              class="btn btn-whatsapp"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon name="whatsapp" size={18} />
+              Inscrire mon enfant
+            </a>
+            <a href="#programmes" class="btn btn-outline">Découvrir nos programmes</a>
+          </div>
+
+          <ul class="hero-chips">
+            <li><Icon name="book-open" size={15} /> Mémorisation du Coran</li>
+            <li><Icon name="palette" size={15} /> Clubs d'été</li>
+            <li><Icon name="languages" size={15} /> Langues</li>
+            <li><Icon name="sparkles" size={15} /> Soutien scolaire</li>
+          </ul>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-photo-main">
+            <img src="/images/hero-enfants-activites-creatives.png" alt="Enfants épanouis lors d'une activité créative à Openmind Academy" />
+          </div>
+          <div class="hero-photo-badge hero-photo-badge-1">
+            <img src="/images/hero-badge-musique.png" alt="Club de musique pour enfants" />
+          </div>
+          <div class="hero-photo-badge hero-photo-badge-2">
+            <img src="/images/hero-badge-lecture.png" alt="Club de lecture intelligente" />
+          </div>
+          <div class="hero-sticker">
+            <span>Places limitées</span>
+            <strong>Été 2026</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST MARQUEE — breaks card rhythm with a moving strip -->
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>Encadrement bienveillant</span>
+        <Icon name="star" size={14} />
+        <span>Groupes à taille humaine</span>
+        <Icon name="star" size={14} />
+        <span>Professeurs qualifiés</span>
+        <Icon name="star" size={14} />
+        <span>Environnement rassurant</span>
+        <Icon name="star" size={14} />
+        <span>Au cœur de Sidi Abdelhamid</span>
+        <Icon name="star" size={14} />
+        <span>Encadrement bienveillant</span>
+        <Icon name="star" size={14} />
+        <span>Groupes à taille humaine</span>
+        <Icon name="star" size={14} />
+        <span>Professeurs qualifiés</span>
+        <Icon name="star" size={14} />
+        <span>Environnement rassurant</span>
+        <Icon name="star" size={14} />
+        <span>Au cœur de Sidi Abdelhamid</span>
+        <Icon name="star" size={14} />
+      </div>
+    </div>
+
+    <!-- PROGRAMS OVERVIEW — bento, not uniform cards -->
+    <section class="section programmes" id="programmes">
+      <div class="container">
+        <p class="eyebrow reveal">Nos programmes</p>
+        <h2 class="section-title reveal">Un programme pour chaque enfant, chaque passion.</h2>
+        <p class="section-subtitle reveal">
+          Du soutien scolaire quotidien aux clubs d'éveil de l'été, chaque parcours est pensé
+          pour faire grandir la confiance et la curiosité.
+        </p>
+
+        <div class="bento">
+          <a href="/clubs-ete" class="bento-tile bento-tile-large reveal">
+            <img src="/images/programme-bento-clubs-ete.png" alt="Clubs d'été à Openmind Academy" />
+            <div class="bento-tile-overlay">
+              <span class="bento-tag">Été 2026</span>
+              <h3>Clubs d'été</h3>
+              <p>Musique, danse, lecture intelligente, dessin, langues et activités récréatives — du lundi au samedi.</p>
+              <span class="bento-link">Voir le programme estival <Icon name="arrow-right" size={16} /></span>
+            </div>
+          </a>
+
+          <a href="/programme-coran" class="bento-tile bento-tile-quran reveal reveal-delay-1">
+            <div class="bento-quran-pattern" aria-hidden="true"></div>
+            <div class="bento-tile-content">
+              <span class="bento-tag bento-tag-quran">نحفظ القرآن الكريم</span>
+              <h3>Programme Coran</h3>
+              <p>2 séances par semaine, sous la supervision d'un enseignant dédié.</p>
+              <span class="bento-link bento-link-quran">Découvrir le programme <Icon name="arrow-right" size={16} /></span>
+            </div>
+          </a>
+
+          <div class="bento-tile bento-tile-medium reveal reveal-delay-2">
+            <div class="bento-tile-content">
+              <Icon name="sparkles" size={26} class="bento-icon" />
+              <h3>UpOnMind</h3>
+              <p>Séances de sensibilisation et d'accompagnement, et sessions de révision pour l'excellence académique.</p>
+            </div>
+          </div>
+
+          <div class="bento-tile bento-tile-medium reveal reveal-delay-3">
+            <div class="bento-tile-content">
+              <Icon name="book-open" size={26} class="bento-icon" />
+              <h3>Club Lecture & Dessin</h3>
+              <p>Séances de contes et ateliers de dessin, avec une séance de Coran libre et gratuite le dimanche.</p>
+            </div>
+          </div>
+
+          <div class="bento-tile bento-tile-medium reveal">
+            <div class="bento-tile-content">
+              <Icon name="languages" size={26} class="bento-icon" />
+              <h3>Langues</h3>
+              <p>Cours de perfectionnement en arabe, français et anglais, à tous les niveaux.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIGNATURE PHOTO BAND — full-bleed divider -->
+    <section class="signature-band reveal">
+      <img src="/images/bande-signature-vie-academie.png" alt="La vie à Openmind Academy" />
+      <div class="signature-band-caption">
+        <p>Un lieu où apprendre rime avec s'amuser.</p>
+      </div>
+    </section>
+
+    <!-- SUMMER PROGRAM SCHEDULE -->
+    <section class="section estival">
+      <div class="container">
+        <div class="estival-head">
+          <div>
+            <p class="eyebrow reveal">Programme estival</p>
+            <h2 class="section-title reveal">Deux formules, du lundi au samedi.</h2>
+            <p class="section-subtitle reveal">Choisissez la session qui convient le mieux au rythme de votre enfant.</p>
+          </div>
+          <a href="/clubs-ete" class="btn btn-blue reveal">Voir les clubs d'été</a>
+        </div>
+
+        <div class="estival-sessions">
+          <div class="estival-card reveal">
+            <Icon name="sun" size={30} class="estival-icon" />
+            <h3>Séance du matin</h3>
+            <p class="estival-time">8h00 — 14h00</p>
+            <p>Idéale pour un démarrage tôt et des après-midis libres en famille.</p>
+          </div>
+          <div class="estival-card reveal reveal-delay-1">
+            <Icon name="moon-star" size={30} class="estival-icon" />
+            <h3>Séance de l'après-midi</h3>
+            <p class="estival-time">13h00 — 19h00</p>
+            <p>Parfaite pour les matinées tranquilles et une fin de journée active.</p>
+          </div>
+        </div>
+        <p class="estival-note reveal"><Icon name="calendar" size={16} /> Du lundi au samedi, toute la durée de l'été.</p>
+      </div>
+    </section>
+
+    <!-- QURAN PROGRAM — deliberately distinct world -->
+    <section class="quran-section">
+      <div class="quran-pattern" aria-hidden="true"></div>
+      <div class="container quran-grid">
+        <div class="quran-copy reveal">
+          <p class="eyebrow is-quran">Programme dédié</p>
+          <p class="quran-arabic">نحفظ القرآن الكريم</p>
+          <h2 class="quran-title">Mémorisation du Coran</h2>
+          <p>
+            Deux séances par semaine, encadrées par un enseignant dédié, dans un cadre
+            serein, respectueux et adapté au rythme de chaque enfant.
+          </p>
+          <a href="/programme-coran" class="btn btn-green">Découvrir le programme</a>
+        </div>
+        <div class="quran-mark reveal reveal-delay-1" aria-hidden="true">
+          <Icon name="book-open" size={64} />
+        </div>
+      </div>
+    </section>
+
+    <!-- READING & DRAWING CLUB -->
+    <section class="section lecture-dessin">
+      <div class="container lecture-dessin-grid">
+        <div class="lecture-dessin-photo reveal">
+          <img src="/images/photo-club-lecture-dessin.png" alt="Club Lecture et Dessin" />
+        </div>
+        <div class="reveal reveal-delay-1">
+          <p class="eyebrow">Club Lecture & Dessin</p>
+          <h2 class="section-title">Des histoires qui font voyager l'imagination.</h2>
+          <p class="section-subtitle">
+            Chaque semaine, nos séances de contes éveillent la curiosité des enfants,
+            prolongées par des ateliers de dessin où ils expriment ce qu'ils imaginent.
+            Le dimanche, une séance de Coran libre et gratuite vient compléter la semaine.
+          </p>
+          <ul class="lecture-dessin-list">
+            <li><Icon name="check-circle" size={18} /> Séances de contes hebdomadaires</li>
+            <li><Icon name="check-circle" size={18} /> Ateliers de dessin et créativité</li>
+            <li><Icon name="check-circle" size={18} /> Séance de Coran libre le dimanche, gratuite</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST STAT STRIP -->
+    <section class="stat-strip reveal">
+      <div class="container stat-strip-grid">
+        <div class="stat-item">
+          <Icon name="users" size={26} />
+          <span>Groupes à taille humaine</span>
+        </div>
+        <div class="stat-item">
+          <Icon name="heart" size={26} />
+          <span>Encadrement bienveillant</span>
+        </div>
+        <div class="stat-item">
+          <Icon name="graduation-cap" size={26} />
+          <span>Professeurs qualifiés</span>
+        </div>
+        <div class="stat-item">
+          <Icon name="map-pin" size={26} />
+          <span>Au cœur de Sidi Abdelhamid</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+      <div class="container final-cta-inner">
+        <div class="reveal">
+          <h2>Prêt à inscrire votre enfant ?</h2>
+          <p>Écrivez-nous dès aujourd'hui, nous répondons avec plaisir à toutes vos questions.</p>
+        </div>
+        <div class="final-cta-actions reveal reveal-delay-1">
+          <a
+            href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`}
+            class="btn btn-whatsapp"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon name="whatsapp" size={18} /> WhatsApp
+          </a>
+          <a href="/contact" class="btn btn-outline-light">Nous contacter</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    padding-top: 78px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding: 40px 0 60px;
+    background: linear-gradient(180deg, var(--color-cyan-pale) 0%, var(--color-paper) 68%);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .hero-copy h1 {
+    font-size: 2.1rem;
+    margin: 16px 0 18px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-lead {
+    font-size: 1.02rem;
+    color: var(--color-ink-soft);
+    max-width: 480px;
+    margin-bottom: 26px;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 26px;
+  }
+
+  .hero-chips {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .hero-chips li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #fff;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--color-blue-deep);
+    box-shadow: 0 4px 12px rgba(11, 47, 160, 0.06);
+  }
+  .hero-chips .icon { color: var(--color-cyan); }
+
+  .hero-visual {
+    position: relative;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 10px 30px 40px 0;
+  }
+
+  .hero-photo-main {
+    border-radius: 46% 54% 61% 39% / 45% 40% 60% 55%;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    aspect-ratio: 1 / 1.12;
+  }
+  .hero-photo-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-photo-badge {
+    position: absolute;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--color-paper);
+    box-shadow: 0 10px 22px rgba(11, 47, 160, 0.22);
+  }
+  .hero-photo-badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero-photo-badge-1 {
+    top: -6px;
+    right: 6px;
+  }
+  .hero-photo-badge-2 {
+    bottom: 18px;
+    left: -14px;
+    width: 78px;
+    height: 78px;
+  }
+
+  .hero-sticker {
+    position: absolute;
+    bottom: -6px;
+    right: 20px;
+    background: var(--color-spark);
+    color: var(--color-blue-deep);
+    border-radius: 16px;
+    padding: 10px 16px;
+    transform: rotate(-6deg);
+    box-shadow: var(--shadow-punch);
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+  .hero-sticker span {
+    font-size: 0.68rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .hero-sticker strong {
+    font-family: var(--font-display);
+    font-size: 1rem;
+  }
+
+  /* ---------- MARQUEE ---------- */
+  .marquee {
+    background: var(--color-blue);
+    overflow: hidden;
+    padding: 14px 0;
+  }
+  .marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    white-space: nowrap;
+    width: max-content;
+    animation: marquee 26s linear infinite;
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+  .marquee-track .icon {
+    color: var(--color-spark);
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+  }
+
+  /* ---------- BENTO ---------- */
+  .bento {
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .bento-tile {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    min-height: 220px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  a.bento-tile:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .bento-tile-large {
+    min-height: 300px;
+  }
+  .bento-tile-large img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .bento-tile-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(7, 29, 99, 0.15) 0%, rgba(7, 29, 99, 0.86) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px;
+    color: #fff;
+  }
+  .bento-tag {
+    align-self: flex-start;
+    background: var(--color-spark);
+    color: var(--color-blue-deep);
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+  }
+  .bento-tile-overlay h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+  }
+  .bento-tile-overlay p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 340px;
+    margin-bottom: 14px;
+  }
+  .bento-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.86rem;
+    color: var(--color-spark);
+  }
+
+  .bento-tile-medium {
+    background: #fff;
+    border: 1px solid var(--color-line);
+    min-height: 200px;
+  }
+  .bento-tile-content {
+    padding: 26px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .bento-icon {
+    color: var(--color-cyan);
+    margin-bottom: 14px;
+  }
+  .bento-tile-content h3 {
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+  }
+  .bento-tile-content p {
+    font-size: 0.9rem;
+    color: var(--color-ink-soft);
+  }
+
+  .bento-tile-quran {
+    background: var(--color-quran-green-deep);
+    color: #fff;
+  }
+  .bento-quran-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.5;
+    background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08) 0, rgba(255,255,255,0.08) 2px, transparent 2px),
+      radial-gradient(circle at 60% 70%, rgba(255,255,255,0.06) 0, rgba(255,255,255,0.06) 2px, transparent 2px);
+    background-size: 34px 34px, 46px 46px;
+  }
+  .bento-tile-quran .bento-tile-content {
+    position: relative;
+  }
+  .bento-tag-quran {
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    font-size: 0.95rem;
+  }
+  .bento-tile-quran h3 { color: #fff; }
+  .bento-tile-quran p { color: rgba(255, 255, 255, 0.78); }
+  .bento-link-quran { color: #a7d9b6; }
+
+  /* ---------- SIGNATURE BAND ---------- */
+  .signature-band {
+    position: relative;
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+  }
+  .signature-band img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .signature-band-caption {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(120deg, rgba(7, 29, 99, 0.55) 0%, rgba(11, 47, 160, 0.15) 55%, rgba(7, 29, 99, 0.55) 100%);
+  }
+  .signature-band-caption p {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: #fff;
+    text-align: center;
+    padding: 0 24px;
+    max-width: 560px;
+  }
+
+  /* ---------- ESTIVAL ---------- */
+  .estival-head {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    margin-bottom: 30px;
+  }
+  .estival-sessions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .estival-card {
+    background: #fff;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    padding: 28px;
+  }
+  .estival-icon {
+    color: var(--color-spark-deep);
+    margin-bottom: 12px;
+  }
+  .estival-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+  }
+  .estival-time {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--color-blue);
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+  .estival-card p:last-child {
+    color: var(--color-ink-soft);
+    font-size: 0.92rem;
+  }
+  .estival-note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 22px;
+    color: var(--color-ink-soft);
+    font-size: 0.9rem;
+  }
+  .estival-note .icon { color: var(--color-cyan); }
+
+  /* ---------- QURAN SECTION (distinct world) ---------- */
+  .quran-section {
+    position: relative;
+    background: var(--color-quran-green-deep);
+    padding: 64px 0;
+    overflow: hidden;
+  }
+  .quran-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.035) 0 2px, transparent 2px 26px),
+      repeating-linear-gradient(-45deg, rgba(255,255,255,0.035) 0 2px, transparent 2px 26px);
+  }
+  .quran-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    align-items: center;
+  }
+  .quran-arabic {
+    font-size: 1.6rem;
+    color: #dff2e3;
+    margin: 10px 0 6px;
+    line-height: 1.6;
+  }
+  .quran-title {
+    color: #fff;
+    font-size: 1.9rem;
+    margin-bottom: 14px;
+  }
+  .quran-copy p {
+    color: rgba(255, 255, 255, 0.82);
+    max-width: 480px;
+    margin-bottom: 22px;
+    font-size: 1rem;
+  }
+  .quran-mark {
+    display: none;
+    justify-self: center;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    align-items: center;
+    justify-content: center;
+    color: #a7d9b6;
+  }
+
+  /* ---------- LECTURE & DESSIN ---------- */
+  .lecture-dessin-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+  .lecture-dessin-photo {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+  }
+  .lecture-dessin-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 18px;
+  }
+  .lecture-dessin-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: var(--color-ink);
+  }
+  .lecture-dessin-list .icon { color: var(--color-spark-deep); }
+
+  /* ---------- STAT STRIP ---------- */
+  .stat-strip {
+    background: #fff;
+    border-top: 1px solid var(--color-line);
+    border-bottom: 1px solid var(--color-line);
+    padding: 36px 0;
+  }
+  .stat-strip-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    color: var(--color-blue-deep);
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 0.88rem;
+  }
+  .stat-item .icon { color: var(--color-cyan); }
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta {
+    background: linear-gradient(120deg, var(--color-blue) 0%, var(--color-blue-deep) 100%);
+    padding: 64px 0;
+  }
+  .final-cta-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: flex-start;
+  }
+  .final-cta h2 {
+    color: #fff;
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+  }
+  .final-cta p {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 1rem;
+  }
+  .final-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (min-width: 620px) {
+    .stat-strip-grid { grid-template-columns: repeat(4, 1fr); }
+    .estival-sessions { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (min-width: 860px) {
+    .hero-grid {
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 50px;
+    }
+    .hero-copy h1 { font-size: 2.7rem; }
+    .bento {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .bento-tile-large {
+      grid-column: span 2;
+    }
+    .lecture-dessin-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .quran-grid {
+      grid-template-columns: 1.3fr 0.7fr;
+    }
+    .quran-mark { display: flex; }
+    .estival-head {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+    .final-cta-inner {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  @media (min-width: 1080px) {
+    .hero-copy h1 { font-size: 3.1rem; }
+    .signature-band { height: 340px; }
+  }
+</style>

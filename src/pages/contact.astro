@@ -1,0 +1,285 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+
+const PHONE_DISPLAY = "99 109 693";
+const PHONE_TEL = "+21699109693";
+const WHATSAPP_NUMBER = "21699109693";
+const WHATSAPP_MESSAGE = encodeURIComponent("Bonjour, je vous contacte depuis votre site");
+const EMAIL = "Imenlahouaropenmind@gmail.com";
+---
+
+<Layout
+  title="Contact - Openmind Academy"
+  description="Contactez Openmind Academy à Sidi Abdelhamid, Sousse : téléphone, WhatsApp, email, adresse et formulaire d'inscription."
+>
+  <main>
+    <section class="contact-hero">
+      <div class="container">
+        <p class="eyebrow reveal">Nous écrire</p>
+        <h1 class="reveal">Parlons du parcours de votre enfant.</h1>
+        <p class="contact-hero-lead reveal">
+          Une question sur un programme, une inscription, ou simplement envie d'en savoir plus ?
+          Notre équipe vous répond avec plaisir.
+        </p>
+      </div>
+    </section>
+
+    <section class="section contact-body">
+      <div class="container contact-grid">
+        <div class="contact-info reveal">
+          <div class="contact-info-card">
+            <a class="contact-row" href={`tel:${PHONE_TEL}`}>
+              <span class="contact-row-icon"><Icon name="phone" size={19} /></span>
+              <span>
+                <strong>Téléphone</strong>
+                <span>{PHONE_DISPLAY}</span>
+              </span>
+            </a>
+
+            <a
+              class="contact-row"
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span class="contact-row-icon contact-row-icon-whatsapp"><Icon name="whatsapp" size={19} /></span>
+              <span>
+                <strong>WhatsApp</strong>
+                <span>Réponse rapide, du lundi au samedi</span>
+              </span>
+            </a>
+
+            <a class="contact-row" href={`mailto:${EMAIL}`}>
+              <span class="contact-row-icon"><Icon name="mail" size={19} /></span>
+              <span>
+                <strong>Email</strong>
+                <span class="contact-email">{EMAIL}</span>
+              </span>
+            </a>
+
+            <div class="contact-row">
+              <span class="contact-row-icon"><Icon name="map-pin" size={19} /></span>
+              <span>
+                <strong>Adresse</strong>
+                <span>Hay El Mattar, Sidi Abdelhamid, Sousse — en face de l'Institut Mahmoud El Messaadi</span>
+              </span>
+            </div>
+
+            <div class="contact-row">
+              <span class="contact-row-icon"><Icon name="clock" size={19} /></span>
+              <span>
+                <strong>Horaires d'ouverture</strong>
+                <span>À confirmer avec l'équipe Openmind Academy</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="contact-map">
+            <div class="contact-map-placeholder">
+              <Icon name="map-pin" size={30} />
+              <p>Carte Google Maps à intégrer</p>
+              <span>Hay El Mattar, Sidi Abdelhamid, Sousse</span>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form reveal reveal-delay-1">
+          <h2>Formulaire d'inscription</h2>
+          <p class="contact-form-note">Ce formulaire est une prévisualisation — il n'envoie pas encore de message.</p>
+
+          <label>
+            Nom du parent
+            <input type="text" name="parent_name" placeholder="Votre nom complet" required />
+          </label>
+
+          <label>
+            Téléphone
+            <input type="tel" name="phone" placeholder="99 000 000" required />
+          </label>
+
+          <label>
+            Programme souhaité
+            <select name="program">
+              <option>Clubs d'été</option>
+              <option>Programme Coran</option>
+              <option>UpOnMind</option>
+              <option>Club Lecture & Dessin</option>
+              <option>Langues</option>
+              <option>Autre / je ne sais pas encore</option>
+            </select>
+          </label>
+
+          <label>
+            Âge de l'enfant
+            <input type="text" name="child_age" placeholder="Ex: 7 ans" />
+          </label>
+
+          <label>
+            Message
+            <textarea name="message" rows="4" placeholder="Parlez-nous de votre enfant et de vos besoins..."></textarea>
+          </label>
+
+          <button type="submit" class="btn btn-spark">
+            <Icon name="send" size={17} /> Envoyer la demande
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main { padding-top: 78px; }
+
+  .contact-hero {
+    background: linear-gradient(180deg, var(--color-cyan-pale) 0%, var(--color-paper) 100%);
+    padding: 48px 0 20px;
+  }
+  .contact-hero h1 {
+    font-size: 2.1rem;
+    margin: 14px 0;
+    max-width: 640px;
+  }
+  .contact-hero-lead {
+    color: var(--color-ink-soft);
+    max-width: 520px;
+    font-size: 1.02rem;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    align-items: start;
+  }
+
+  .contact-info-card {
+    background: #fff;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    padding: 10px;
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px;
+    text-decoration: none;
+    color: var(--color-ink);
+    border-bottom: 1px solid var(--color-line);
+  }
+  .contact-info-card .contact-row:last-child { border-bottom: none; }
+
+  .contact-row-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--color-cyan-pale);
+    color: var(--color-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-row-icon-whatsapp {
+    background: #e6faec;
+    color: #1fa855;
+  }
+
+  .contact-row strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    color: var(--color-blue-deep);
+    margin-bottom: 2px;
+  }
+  .contact-row span span {
+    font-size: 0.9rem;
+    color: var(--color-ink-soft);
+  }
+  .contact-email {
+    word-break: break-all;
+  }
+
+  .contact-map {
+    margin-top: 22px;
+  }
+  .contact-map-placeholder {
+    background: var(--color-cyan-pale);
+    border: 1.5px dashed rgba(11, 47, 160, 0.3);
+    border-radius: var(--radius-lg);
+    padding: 40px 24px;
+    text-align: center;
+    color: var(--color-blue);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .contact-map-placeholder p {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--color-blue-deep);
+  }
+  .contact-map-placeholder span {
+    font-size: 0.86rem;
+    color: var(--color-ink-soft);
+  }
+
+  .contact-form {
+    background: #fff;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .contact-form h2 {
+    font-size: 1.35rem;
+  }
+  .contact-form-note {
+    font-size: 0.84rem;
+    color: var(--color-slate);
+    margin-top: -8px;
+  }
+  .contact-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--color-ink);
+  }
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1.4px solid var(--color-line);
+    background: var(--color-paper);
+    color: var(--color-ink);
+    resize: vertical;
+  }
+  .contact-form input:focus,
+  .contact-form select:focus,
+  .contact-form textarea:focus {
+    outline: none;
+    border-color: var(--color-cyan);
+  }
+  .contact-form button {
+    margin-top: 6px;
+  }
+
+  @media (min-width: 960px) {
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+  }
+</style>

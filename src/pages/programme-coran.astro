@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+---
+
+<Layout title="Programme Coran - Openmind Academy" description="Programme de mémorisation du Coran à Openmind Academy, Sousse.">
+  <main class="placeholder-page placeholder-page-quran">
+    <div class="container placeholder-content">
+      <Icon name="book-open" size={34} class="placeholder-icon" />
+      <p class="eyebrow is-quran">Programme Coran</p>
+      <h1>Contenu bientôt disponible</h1>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .placeholder-page {
+    padding-top: 78px;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+  }
+  .placeholder-page-quran {
+    background: linear-gradient(180deg, var(--color-quran-pale) 0%, var(--color-paper) 60%);
+  }
+  .placeholder-content {
+    text-align: center;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 60px 20px;
+  }
+  .placeholder-icon {
+    color: var(--color-quran-green);
+    margin: 0 auto 18px;
+  }
+  .placeholder-content h1 {
+    font-size: 1.7rem;
+    color: var(--color-blue-deep);
+  }
+</style>

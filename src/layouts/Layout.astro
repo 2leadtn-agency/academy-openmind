@@ -1,0 +1,289 @@
+---
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import FloatingWhatsapp from "../components/FloatingWhatsapp.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = "Openmind Academy - Centre Éducatif pour Enfants à Sousse",
+  description = "Openmind Academy à Sidi Abdelhamid, Sousse : clubs d'été, mémorisation du Coran, soutien scolaire et cours de langues pour enfants, dans un cadre chaleureux et stimulant.",
+  ogImage = "/images/hero-enfants-activites-creatives.png",
+} = Astro.props;
+
+const SITE_URL = "https://academy-openmind.vercel.app";
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <meta property="og:image" content={`${SITE_URL}${ogImage}`} />
+    <meta property="og:title" content="Openmind Academy - Centre Éducatif pour Enfants à Sousse" />
+    <meta
+      property="og:description"
+      content="Clubs d'été, mémorisation du Coran, soutien scolaire et langues pour enfants à Sousse, dans un cadre chaleureux et stimulant."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Lexend:wght@400;500;600;700&display=swap"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Lexend:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Lexend:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+  </head>
+  <body>
+    <Nav />
+    <slot />
+    <Footer />
+
+    <FloatingWhatsapp />
+
+    <script src="/chatbot.js" is:inline defer></script>
+    <script src="/scroll-reveal.js" is:inline defer></script>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    /* Primary brand world — energetic blue / cyan */
+    --color-blue: #0b2fa0;
+    --color-blue-deep: #071d63;
+    --color-cyan: #11b4ed;
+    --color-cyan-pale: #e3f7ff;
+
+    /* Warm spark accent — used sparingly for joy/energy (stickers, stars, badges) */
+    --color-spark: #ffb020;
+    --color-spark-deep: #e8503a;
+
+    /* Quran program accent — deliberately separate world, used ONLY for that program */
+    --color-quran-green: #14532d;
+    --color-quran-green-deep: #0c3a1f;
+    --color-quran-pale: #eef7ee;
+
+    /* Neutrals — warm paper, not sterile white */
+    --color-paper: #fffaf2;
+    --color-cream: #fdf3e2;
+    --color-ink: #14183a;
+    --color-ink-soft: #454a6e;
+    --color-slate: #6b7094;
+    --color-line: rgba(20, 24, 58, 0.1);
+    --color-white: #ffffff;
+
+    --font-display: "Fredoka", sans-serif;
+    --font-body: "Lexend", sans-serif;
+
+    --shadow-soft: 0 12px 32px rgba(11, 47, 160, 0.14);
+    --shadow-punch: 0 10px 26px rgba(255, 176, 32, 0.35);
+    --radius-lg: 28px;
+    --radius-md: 18px;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--color-ink);
+    background: var(--color-paper);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    line-height: 1.12;
+    color: var(--color-blue-deep);
+    font-weight: 600;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .section {
+    padding: 56px 0;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-spark-deep);
+    margin-bottom: 14px;
+  }
+
+  .eyebrow::before {
+    content: "";
+    display: block;
+    width: 22px;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--color-spark);
+  }
+
+  .eyebrow.is-quran {
+    color: var(--color-quran-green);
+  }
+  .eyebrow.is-quran::before {
+    background: var(--color-quran-green);
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+
+  .section-subtitle {
+    color: var(--color-ink-soft);
+    font-size: 1.02rem;
+    max-width: 560px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.96rem;
+    text-decoration: none;
+    border-radius: 999px;
+    padding: 15px 26px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+    white-space: nowrap;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn-spark {
+    background: var(--color-spark);
+    color: var(--color-blue-deep);
+    box-shadow: var(--shadow-punch);
+  }
+  .btn-spark:hover {
+    filter: brightness(1.05);
+  }
+
+  .btn-blue {
+    background: var(--color-blue);
+    color: #fff;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--color-blue-deep);
+    border: 1.6px solid rgba(11, 47, 160, 0.28);
+  }
+
+  .btn-outline-light {
+    background: transparent;
+    color: #fff;
+    border: 1.6px solid rgba(255, 255, 255, 0.45);
+  }
+
+  .btn-whatsapp {
+    background: #25d366;
+    color: #fff;
+  }
+
+  .btn-green {
+    background: var(--color-quran-green);
+    color: #fff;
+  }
+
+  .icon {
+    display: block;
+    flex-shrink: 0;
+  }
+
+  /* Soft scroll-reveal: JS toggles .is-visible via IntersectionObserver */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1.is-visible { transition-delay: 0.08s; }
+  .reveal-delay-2.is-visible { transition-delay: 0.16s; }
+  .reveal-delay-3.is-visible { transition-delay: 0.24s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  @media (min-width: 720px) {
+    .section {
+      padding: 88px 0;
+    }
+    .section-title {
+      font-size: 2.5rem;
+    }
+    .section-subtitle {
+      font-size: 1.12rem;
+    }
+  }
+</style>

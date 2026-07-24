@@ -1,0 +1,209 @@
+---
+import Icon from "./Icon.astro";
+
+const navLinks = [
+  { href: "/", label: "Accueil" },
+  { href: "/clubs-ete", label: "Clubs d'été" },
+  { href: "/programme-coran", label: "Programme Coran" },
+  { href: "/a-propos", label: "À propos" },
+  { href: "/contact", label: "Contact" },
+];
+
+const PHONE_DISPLAY = "99 109 693";
+const PHONE_TEL = "+21699109693";
+const WHATSAPP_NUMBER = "21699109693";
+const EMAIL = "Imenlahouaropenmind@gmail.com";
+const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61579148145956";
+---
+
+<footer class="footer">
+  <svg class="footer-wave" viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 12 C 60 24, 120 0, 180 12 S 300 24, 360 8 S 400 4, 400 4 V24 H0 Z"></path>
+  </svg>
+
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="footer-logo">
+        <img src="/images/logo.png" alt="Openmind Academy" width="48" height="48" />
+        <span>Openmind<em>Academy</em></span>
+      </a>
+      <p>Un centre éducatif chaleureux à Sousse, où le soutien scolaire, la mémorisation du Coran et les clubs d'éveil font grandir la curiosité de chaque enfant.</p>
+      <a
+        href={FACEBOOK_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer-social"
+        aria-label="Openmind Academy sur Facebook"
+      >
+        <Icon name="facebook" size={18} />
+        <span>Suivez-nous sur Facebook</span>
+      </a>
+    </div>
+
+    <div class="footer-col">
+      <h3>Navigation</h3>
+      <ul>
+        {navLinks.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Contact</h3>
+      <ul class="footer-contact">
+        <li>
+          <Icon name="map-pin" size={17} />
+          <span>Hay El Mattar, Sidi Abdelhamid, Sousse — en face de l'Institut Mahmoud El Messaadi</span>
+        </li>
+        <li>
+          <Icon name="phone" size={17} />
+          <a href={`tel:${PHONE_TEL}`}>{PHONE_DISPLAY}</a>
+        </li>
+        <li>
+          <Icon name="whatsapp" size={17} />
+          <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        </li>
+        <li>
+          <Icon name="mail" size={17} />
+          <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom container">
+    <p>© {new Date().getFullYear()} Openmind Academy — Sidi Abdelhamid, Sousse.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    position: relative;
+    background: var(--color-blue-deep);
+    color: rgba(255, 255, 255, 0.82);
+    padding-top: 28px;
+  }
+
+  .footer-wave {
+    display: block;
+    width: 100%;
+    height: 20px;
+    color: var(--color-paper);
+    margin-top: -1px;
+  }
+  .footer-wave path {
+    fill: var(--color-paper);
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding-top: 20px;
+    padding-bottom: 40px;
+  }
+
+  .footer-brand p {
+    margin-top: 14px;
+    font-size: 0.92rem;
+    line-height: 1.7;
+    max-width: 380px;
+    color: rgba(255, 255, 255, 0.68);
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .footer-logo img {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    object-fit: contain;
+  }
+
+  .footer-logo span {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: #fff;
+  }
+  .footer-logo em {
+    font-style: normal;
+    color: var(--color-cyan);
+  }
+
+  .footer-social {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: background 0.15s ease;
+  }
+  .footer-social:hover {
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  .footer-col h3 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-col a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.94rem;
+    transition: color 0.15s ease;
+  }
+  .footer-col a:hover {
+    color: var(--color-cyan);
+  }
+
+  .footer-contact li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .footer-contact .icon {
+    margin-top: 2px;
+    color: var(--color-cyan);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 20px;
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  @media (min-width: 720px) {
+    .footer-inner {
+      grid-template-columns: 1.4fr 0.8fr 1fr;
+      gap: 28px;
+    }
+  }
+</style>
