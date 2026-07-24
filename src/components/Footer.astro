@@ -24,8 +24,7 @@ const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61579148145956";
   <div class="container footer-inner">
     <div class="footer-brand">
       <a href="/" class="footer-logo">
-        <img src="/images/logo.png" alt="Openmind Academy" width="48" height="48" />
-        <span>Openmind<em>Academy</em></span>
+        <img src="/images/logo.png" alt="Openmind Academy" width="900" height="252" />
       </a>
       <p>Un centre éducatif chaleureux à Sousse, où le soutien scolaire, la mémorisation du Coran et les clubs d'éveil font grandir la curiosité de chaque enfant.</p>
       <a
@@ -113,28 +112,18 @@ const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61579148145956";
   }
 
   .footer-logo {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 10px;
     text-decoration: none;
+    background: #fff;
+    padding: 10px 16px;
+    border-radius: 14px;
   }
 
   .footer-logo img {
-    width: 42px;
-    height: 42px;
-    border-radius: 10px;
+    height: 30px;
+    width: auto;
     object-fit: contain;
-  }
-
-  .footer-logo span {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 1.15rem;
-    color: #fff;
-  }
-  .footer-logo em {
-    font-style: normal;
-    color: var(--color-cyan);
   }
 
   .footer-social {
