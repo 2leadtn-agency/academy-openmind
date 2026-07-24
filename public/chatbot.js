@@ -17,12 +17,17 @@ const CHATBOT_CONFIG = {
     "👋 Bonjour et bienvenue chez Openmind Academy ! Une question sur nos clubs d'été, le programme de mémorisation du Coran ou une inscription ? Je suis là pour vous aider."
   const FALLBACK_MESSAGE =
     'Je suis momentanément indisponible. Veuillez nous contacter directement par téléphone ou WhatsApp.'
+  const TOOLTIP_MESSAGE = "Une question ? Besoin d'aide ? 👋"
+  const TOOLTIP_DELAY = 2600
+  const TOOLTIP_AUTOHIDE = 9000
   const TOGGLE_BOTTOM = 90
   const TEXTAREA_MAX_HEIGHT = 96
+  const TOOLTIP_DISMISSED_KEY = 'lrcb-tooltip-dismissed'
 
   let conversationHistory = []
   let hasWelcomed = false
   let isSending = false
+  let tooltipTimers = []
 
   let els = {}
 
@@ -50,13 +55,75 @@ const CHATBOT_CONFIG = {
         z-index: 2147483000;
         padding: 0;
         transition: transform 0.15s ease;
+        animation: lrcb-toggle-pulse 2.8s ease-in-out infinite;
       }
       .lrcb-toggle:hover {
         transform: scale(1.06);
+        animation-play-state: paused;
       }
       .lrcb-toggle svg {
-        width: 26px;
-        height: 26px;
+        width: 28px;
+        height: 28px;
+      }
+      @keyframes lrcb-toggle-pulse {
+        0%, 100% { box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25), 0 0 0 0 rgba(11, 47, 160, 0.35); }
+        50% { box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25), 0 0 0 9px rgba(11, 47, 160, 0); }
+      }
+      .lrcb-tooltip {
+        position: fixed;
+        bottom: ${TOGGLE_BOTTOM + 8}px;
+        ${side}: 86px;
+        max-width: 210px;
+        background: #ffffff;
+        color: #1f2937;
+        border-radius: 14px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+        padding: 12px 30px 12px 14px;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 1.4;
+        z-index: 2147482999;
+        cursor: pointer;
+        opacity: 0;
+        transform: translateY(8px) scale(0.96);
+        pointer-events: none;
+        transition: opacity 0.35s ease, transform 0.35s ease;
+      }
+      .lrcb-tooltip.is-visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
+      }
+      .lrcb-tooltip::after {
+        content: '';
+        position: absolute;
+        bottom: 14px;
+        ${side}: -6px;
+        width: 12px;
+        height: 12px;
+        background: #ffffff;
+        transform: rotate(45deg);
+      }
+      .lrcb-tooltip-close {
+        position: absolute;
+        top: 6px;
+        right: 8px;
+        background: transparent;
+        border: none;
+        color: #9ca3af;
+        font-size: 16px;
+        line-height: 1;
+        cursor: pointer;
+        padding: 4px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .lrcb-toggle { animation: none; }
+      }
+      @media (max-width: 480px) {
+        .lrcb-tooltip {
+          ${side}: 78px;
+          max-width: 168px;
+        }
       }
       .lrcb-panel {
         position: fixed;
@@ -258,11 +325,18 @@ const CHATBOT_CONFIG = {
   }
 
   function buildWidget() {
+    // Toggle icon reuses the same open-book + spark motif as the panel
+    // header avatar, so the entry point itself reads as "Openmind" rather
+    // than a generic chat-bubble icon.
     const toggle = document.createElement('button')
     toggle.className = 'lrcb-toggle'
     toggle.setAttribute('aria-label', 'Ouvrir le chat')
     toggle.innerHTML =
-      '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+      '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+      '<path d="M12 6.4c-1.6-1.3-3.7-1.9-6.3-1.9-.6 0-1 .4-1 1v10.6c0 .6.4 1 1 1 2.6 0 4.7.6 6.3 1.9 1.6-1.3 3.7-1.9 6.3-1.9.6 0 1-.4 1-1V5.5c0-.6-.4-1-1-1-2.6 0-4.7.6-6.3 1.9z" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<path d="M12 6.4v11.2" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/>' +
+      '<path d="M18.6 1.8l.6 1.5 1.5.6-1.5.6-.6 1.5-.6-1.5-1.5-.6 1.5-.6z" fill="#ffb020"/>' +
+      '</svg>'
 
     const panel = document.createElement('div')
     panel.className = 'lrcb-panel'
@@ -359,6 +433,7 @@ const CHATBOT_CONFIG = {
   }
 
   function openPanel() {
+    hideTooltip(true)
     els.panel.hidden = false
     els.toggle.hidden = true
     if (!hasWelcomed) {
@@ -448,9 +523,52 @@ const CHATBOT_CONFIG = {
     }
   }
 
+  function buildTooltip() {
+    const tooltip = document.createElement('div')
+    tooltip.className = 'lrcb-tooltip'
+    tooltip.setAttribute('role', 'button')
+    tooltip.setAttribute('tabindex', '0')
+
+    const text = document.createElement('span')
+    text.textContent = TOOLTIP_MESSAGE
+
+    const closeBtn = document.createElement('button')
+    closeBtn.className = 'lrcb-tooltip-close'
+    closeBtn.setAttribute('aria-label', 'Fermer la suggestion')
+    closeBtn.innerHTML = '&times;'
+    closeBtn.addEventListener('click', function (e) {
+      e.stopPropagation()
+      hideTooltip(true)
+    })
+
+    tooltip.appendChild(text)
+    tooltip.appendChild(closeBtn)
+    tooltip.addEventListener('click', openPanel)
+
+    document.body.appendChild(tooltip)
+    els.tooltip = tooltip
+  }
+
+  function showTooltip() {
+    if (!els.tooltip || sessionStorage.getItem(TOOLTIP_DISMISSED_KEY)) return
+    els.tooltip.classList.add('is-visible')
+    tooltipTimers.push(setTimeout(function () { hideTooltip(false) }, TOOLTIP_AUTOHIDE))
+  }
+
+  function hideTooltip(dismissedPermanently) {
+    tooltipTimers.forEach(clearTimeout)
+    tooltipTimers = []
+    if (els.tooltip) els.tooltip.classList.remove('is-visible')
+    if (dismissedPermanently) {
+      try { sessionStorage.setItem(TOOLTIP_DISMISSED_KEY, '1') } catch (e) {}
+    }
+  }
+
   function initChatbot() {
     injectStyles()
     buildWidget()
+    buildTooltip()
+    tooltipTimers.push(setTimeout(showTooltip, TOOLTIP_DELAY))
   }
 
   document.addEventListener('DOMContentLoaded', initChatbot)

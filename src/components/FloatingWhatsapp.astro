@@ -32,10 +32,23 @@ const PREFILLED_MESSAGE = "Bonjour, je vous contacte depuis votre site";
     box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
     z-index: 2147482900;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
+    animation: whatsapp-pulse 2.8s ease-in-out infinite;
   }
 
   .floating-whatsapp:hover {
     transform: scale(1.06);
     box-shadow: 0 8px 22px rgba(37, 211, 102, 0.5);
+    animation-play-state: paused;
+  }
+
+  @keyframes whatsapp-pulse {
+    0%, 100% { box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0.35); }
+    50% { box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4), 0 0 0 9px rgba(37, 211, 102, 0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .floating-whatsapp {
+      animation: none;
+    }
   }
 </style>

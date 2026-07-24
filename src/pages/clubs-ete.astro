@@ -5,7 +5,7 @@ import Icon from "../components/Icon.astro";
 
 <Layout title="Clubs d'été - Openmind Academy" description="Clubs d'été Openmind Academy à Sousse.">
   <main class="placeholder-page">
-    <div class="container placeholder-content">
+    <div class="container placeholder-content reveal">
       <Icon name="sparkles" size={34} class="placeholder-icon" />
       <p class="eyebrow">Clubs d'été</p>
       <h1>Contenu bientôt disponible</h1>
@@ -27,7 +27,7 @@ import Icon from "../components/Icon.astro";
     margin: 0 auto;
     padding: 60px 20px;
   }
-  .placeholder-icon {
+  :global(.placeholder-icon) {
     color: var(--color-cyan);
     margin: 0 auto 18px;
   }
