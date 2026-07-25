@@ -17,7 +17,7 @@ const CHATBOT_CONFIG = {
     "👋 Bonjour et bienvenue chez Openmind Academy ! Une question sur nos clubs d'été, le programme de mémorisation du Coran ou une inscription ? Je suis là pour vous aider."
   const FALLBACK_MESSAGE =
     'Je suis momentanément indisponible. Veuillez nous contacter directement par téléphone ou WhatsApp.'
-  const TOOLTIP_MESSAGE = "Une question ? Besoin d'aide ? 👋"
+  const TOOLTIP_MESSAGE = "Une question ? 👋"
   const TOOLTIP_DELAY = 2600
   const TOOLTIP_AUTOHIDE = 9000
   const TOGGLE_BOTTOM = 90
@@ -325,18 +325,21 @@ const CHATBOT_CONFIG = {
   }
 
   function buildWidget() {
-    // Toggle icon reuses the same open-book + spark motif as the panel
-    // header avatar, so the entry point itself reads as "Openmind" rather
-    // than a generic chat-bubble icon.
+    // Toggle icon: a wondering child — a simple head-and-shoulders bust with
+    // a small "?" beside it — rather than a generic chat-bubble icon. Used
+    // for both the toggle and the panel header avatar for consistency.
+    const wonderingChildSvg =
+      '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+      '<circle cx="9.4" cy="8.1" r="3.3" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<path d="M4.4 19c.4-3.3 2.5-5.1 5-5.1s4.6 1.8 5 5.1" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<path d="M16.2 6.6c0-1.1.9-1.9 2-1.9 1.1 0 2 .8 2 1.8 0 .9-.6 1.3-1.2 1.7-.5.3-.7.6-.7 1.2" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<circle cx="18.3" cy="11.7" r=".9" fill="#fff"/>' +
+      '</svg>'
+
     const toggle = document.createElement('button')
     toggle.className = 'lrcb-toggle'
     toggle.setAttribute('aria-label', 'Ouvrir le chat')
-    toggle.innerHTML =
-      '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">' +
-      '<path d="M12 6.4c-1.6-1.3-3.7-1.9-6.3-1.9-.6 0-1 .4-1 1v10.6c0 .6.4 1 1 1 2.6 0 4.7.6 6.3 1.9 1.6-1.3 3.7-1.9 6.3-1.9.6 0 1-.4 1-1V5.5c0-.6-.4-1-1-1-2.6 0-4.7.6-6.3 1.9z" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>' +
-      '<path d="M12 6.4v11.2" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/>' +
-      '<path d="M18.6 1.8l.6 1.5 1.5.6-1.5.6-.6 1.5-.6-1.5-1.5-.6 1.5-.6z" fill="#ffb020"/>' +
-      '</svg>'
+    toggle.innerHTML = wonderingChildSvg
 
     const panel = document.createElement('div')
     panel.className = 'lrcb-panel'
@@ -345,17 +348,10 @@ const CHATBOT_CONFIG = {
     const header = document.createElement('div')
     header.className = 'lrcb-header'
 
-    // Custom avatar: open book + a small spark/star — evokes learning and joy
-    // rather than a generic round avatar or emoji.
     const avatar = document.createElement('div')
     avatar.className = 'lrcb-header-avatar'
     avatar.setAttribute('aria-hidden', 'true')
-    avatar.innerHTML =
-      '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">' +
-      '<path d="M12 6.4c-1.6-1.3-3.7-1.9-6.3-1.9-.6 0-1 .4-1 1v10.6c0 .6.4 1 1 1 2.6 0 4.7.6 6.3 1.9 1.6-1.3 3.7-1.9 6.3-1.9.6 0 1-.4 1-1V5.5c0-.6-.4-1-1-1-2.6 0-4.7.6-6.3 1.9z" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>' +
-      '<path d="M12 6.4v11.2" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round"/>' +
-      '<path d="M18.6 2.2l.55 1.35 1.35.55-1.35.55-.55 1.35-.55-1.35-1.35-.55 1.35-.55z" fill="#ffb020"/>' +
-      '</svg>'
+    avatar.innerHTML = wonderingChildSvg
 
     const title = document.createElement('span')
     title.className = 'lrcb-header-title'

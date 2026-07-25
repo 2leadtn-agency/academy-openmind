@@ -58,6 +58,7 @@ const currentPath = Astro.url.pathname;
   <svg class="nav-wave" viewBox="0 0 400 12" preserveAspectRatio="none" aria-hidden="true">
     <path d="M0 4 C 50 12, 100 0, 150 5 S 250 12, 300 4 S 370 0, 400 5" />
   </svg>
+  <div class="nav-progress" id="nav-progress" aria-hidden="true"></div>
 
   <div class="nav-mobile" id="nav-mobile">
     {navLinks.map((link) => (
@@ -123,6 +124,23 @@ const currentPath = Astro.url.pathname;
     fill: none;
     stroke: currentColor;
     stroke-width: 2;
+  }
+
+  .nav-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-blue), var(--color-cyan));
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .nav-progress {
+      transition: transform 0.1s linear;
+    }
   }
 
   .nav-inner {
