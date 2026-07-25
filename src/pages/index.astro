@@ -180,8 +180,10 @@ const WHATSAPP_MESSAGE = encodeURIComponent("Bonjour, je vous contacte depuis vo
       </div>
     </section>
 
-    <!-- QURAN PROGRAM — deliberately distinct world -->
+    <!-- QURAN PROGRAM — deliberately distinct world, fixed-background parallax -->
     <section class="quran-section">
+      <div class="quran-bg" aria-hidden="true"></div>
+      <div class="quran-overlay" aria-hidden="true"></div>
       <div class="container quran-grid">
         <div class="quran-copy reveal">
           <p class="eyebrow is-quran">Programme dédié</p>
@@ -193,15 +195,8 @@ const WHATSAPP_MESSAGE = encodeURIComponent("Bonjour, je vous contacte depuis vo
           </p>
           <a href="/programme-coran" class="btn btn-green">Découvrir le programme</a>
         </div>
-        <div class="quran-frame reveal reveal-delay-1">
-          <img
-            src="/images/motif-geometrique-vert-dore.jpg"
-            alt="Motif géométrique en bois sculpté, dans l'esprit de l'art islamique"
-            data-parallax="16"
-          />
-          <span class="quran-frame-badge" aria-hidden="true">
-            <Icon name="book-open" size={24} />
-          </span>
+        <div class="quran-mark reveal reveal-delay-1" aria-hidden="true">
+          <Icon name="book-open" size={54} />
         </div>
       </div>
     </section>
@@ -658,10 +653,30 @@ const WHATSAPP_MESSAGE = encodeURIComponent("Bonjour, je vous contacte depuis vo
   .estival-note :global(.icon) { color: var(--color-cyan); }
 
   /* ---------- QURAN SECTION (distinct world) ---------- */
+  /* Real photo as a fixed background: on desktop the image stays pinned to
+     the viewport while the section scrolls over it (background-attachment:
+     fixed), giving a genuine parallax "window" effect rather than a JS
+     translateY trick. iOS Safari doesn't support fixed attachment, so
+     mobile gets a normal scrolling background — still full-bleed, just
+     without the pin. */
   .quran-section {
     position: relative;
     background: var(--color-quran-green-deep);
-    padding: 64px 0;
+    padding: 72px 0;
+    overflow: hidden;
+  }
+  .quran-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url("/images/motif-geometrique-vert-dore.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .quran-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(9, 46, 25, 0.82) 0%, rgba(16, 68, 37, 0.68) 55%, rgba(9, 46, 25, 0.86) 100%);
   }
   .quran-grid {
     position: relative;
@@ -687,40 +702,24 @@ const WHATSAPP_MESSAGE = encodeURIComponent("Bonjour, je vous contacte depuis vo
     margin-bottom: 22px;
     font-size: 1rem;
   }
-
-  /* Photo treated as a framed plaque, not a full-bleed wash — keeps the
-     real texture legible instead of competing with the text for contrast. */
-  .quran-frame {
-    position: relative;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    aspect-ratio: 16 / 10;
-    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.38);
-    border: 1px solid rgba(232, 200, 116, 0.32);
-  }
-  .quran-frame img {
-    position: absolute;
-    top: -15%;
-    left: 0;
-    width: 100%;
-    height: 130%;
-    object-fit: cover;
-  }
-  .quran-frame-badge {
-    position: absolute;
-    bottom: 14px;
-    right: 14px;
-    width: 50px;
-    height: 50px;
+  .quran-mark {
+    display: none;
+    justify-self: center;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    background: var(--color-quran-green-deep);
-    border: 2px solid rgba(255, 255, 255, 0.16);
-    display: flex;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(232, 200, 116, 0.32);
     align-items: center;
     justify-content: center;
     color: #fff;
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
     animation: quran-breathe 3.2s ease-in-out infinite;
+  }
+
+  @media (min-width: 860px) {
+    .quran-bg {
+      background-attachment: fixed;
+    }
   }
 
   /* ---------- LECTURE & DESSIN ---------- */
@@ -824,8 +823,9 @@ const WHATSAPP_MESSAGE = encodeURIComponent("Bonjour, je vous contacte depuis vo
       grid-template-columns: 1fr 1fr;
     }
     .quran-grid {
-      grid-template-columns: 1.15fr 0.85fr;
+      grid-template-columns: 1.3fr 0.7fr;
     }
+    .quran-mark { display: flex; }
     .estival-head {
       flex-direction: row;
       align-items: flex-end;
@@ -852,7 +852,7 @@ const WHATSAPP_MESSAGE = encodeURIComponent("Bonjour, je vous contacte depuis vo
     .hero-photo-badge-1,
     .hero-photo-badge-2,
     .hero-sticker,
-    .quran-frame-badge {
+    .quran-mark {
       animation: none;
     }
   }

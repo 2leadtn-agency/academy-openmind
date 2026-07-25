@@ -76,11 +76,13 @@ const EMAIL = "Imenlahouaropenmind@gmail.com";
           </div>
 
           <div class="contact-map">
-            <div class="contact-map-placeholder">
-              <Icon name="map-pin" size={30} />
-              <p>Carte Google Maps à intégrer</p>
-              <span>Hay El Mattar, Sidi Abdelhamid, Sousse</span>
-            </div>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5924.290187767722!2d10.63970241480857!3d35.79925472249464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1302750018ccd2a1%3A0x3972638c1931888f!2sHay%20matar!5e1!3m2!1sen!2stn!4v1784961571730!5m2!1sen!2stn"
+              title="Localisation d'Openmind Academy sur Google Maps"
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
           </div>
         </div>
 
@@ -205,27 +207,22 @@ const EMAIL = "Imenlahouaropenmind@gmail.com";
 
   .contact-map {
     margin-top: 22px;
-  }
-  .contact-map-placeholder {
-    background: var(--color-cyan-pale);
-    border: 1.5px dashed rgba(11, 47, 160, 0.3);
     border-radius: var(--radius-lg);
-    padding: 40px 24px;
-    text-align: center;
-    color: var(--color-blue);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    aspect-ratio: 4 / 3;
   }
-  .contact-map-placeholder p {
-    font-family: var(--font-display);
-    font-weight: 600;
-    color: var(--color-blue-deep);
+  .contact-map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
   }
-  .contact-map-placeholder span {
-    font-size: 0.86rem;
-    color: var(--color-ink-soft);
+
+  @media (min-width: 960px) {
+    .contact-map {
+      aspect-ratio: 1 / 1;
+    }
   }
 
   .contact-form {
